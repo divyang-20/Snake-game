@@ -141,3 +141,53 @@ window.addEventListener("keydown", (e) => {
       break;
   }
 });
+
+let moving = false
+let inX = null
+let inY = null
+const limit = Math.tan(45 * 1.5 / 180 * Math.PI);
+
+window.addEventListener('touchstart',(e)=>{
+    inX = e.touches[0].clientX
+    inY = e.touches[0].clientY
+    moving = true
+})
+
+window.addEventListener('touchmove',(e)=>{
+    if(moving){
+        let currX = e.touches[0].clientX
+        let currY = e.touches[0].clientY
+        let x = currX-inX
+        let y = currY-inY
+        let xy = Math.abs(x / y);
+        let yx = Math.abs(y / x);
+        if (yx <= limit){
+            if (x < 0){
+                console.log("left")
+                inputDir.x = -1;
+                inputDir.y = 0;
+            }
+            else{
+                console.log("right")
+                inputDir.x = -1;
+                inputDir.y = 0;
+            }
+        }
+        if (xy <= limit){
+            if (y < 0 ){
+                console.log("top")
+                inputDir.x = 0;
+                inputDir.y = -1;
+            }
+            else{
+                console.log("bottom")
+                inputDir.x = 0;
+                inputDir.y = 1;
+            }
+        }
+    }
+})
+
+window.addEventListener('touchend',(e)=>{
+    moving = false;
+})
