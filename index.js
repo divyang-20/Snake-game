@@ -169,7 +169,7 @@ window.addEventListener('touchmove',(e)=>{
             }
             else{
                 console.log("right")
-                inputDir.x = -1;
+                inputDir.x = 1;
                 inputDir.y = 0;
             }
         }
